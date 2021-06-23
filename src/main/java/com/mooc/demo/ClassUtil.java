@@ -1,5 +1,7 @@
 package com.mooc.demo;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class ClassUtil {
@@ -35,6 +37,23 @@ public class ClassUtil {
                 System.out.print(cp.getName()+",");
             }
             System.out.println(")");
+        }
+    }
+
+    public static void printFieldMessage(Object obj){
+        Class c=obj.getClass();
+        for (Field f : c.getDeclaredFields()) {
+            System.out.println(f.getType().getName()+","+f.getName());
+        }
+    }
+
+    public static void printConMessage(Object obj){
+        Class c=obj.getClass();
+        for (Constructor con : c.getDeclaredConstructors()) {
+            for (Class pc : con.getParameterTypes()) {
+                System.out.print(pc.getName()+",");
+            }
+            System.out.println();
         }
     }
 }
